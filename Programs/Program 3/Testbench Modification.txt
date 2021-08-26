@@ -1,0 +1,11 @@
+I have modified the test bench so that during the tests, it prints out the correct value on the left hand side. i.e the value that is actually being compared with my output. I have also replaced all instances of 'core' with 'Core' to fix compilation issues.
+
+
+Not a modification but an explanation:
+The test bench removes up to 24 spaces from the beginning of the string and the entire preamble. Since the preamble can be of variable length, it is impossible for me to recreate the test bench behaviour exactly as I can't differentiate between leading spaces and the preamble. This means that the test bench can remove at most between 34 and 39 leading spaces depending on preamble length.
+
+In addition, the test bench may corrupt bits after the 24th character (after including the preamble). This makes it absolutely impossible to even attempt to recreate test bench behaviour as removing up to 39 spaces is not possible if someone of the values are corrupted after the 24th character.
+
+Lastly, the assignment description in Lab1 (added below) asks us to remove up to a total of 15 spaces including the preamble (since we can't differentiate between preamble and leading spaces in string). In this case, my program recreates perfectly the expected behaviour. In test cases involving strings with no leading spaces, I also recreate the test bench behaviour perfectly.
+
+"1. This program shall detect the location of the first non-space character in the message, since there will be leading preamble padding bits of 0x20. (The message itself may also have started with additional space characters. We shall remove these, as well, up to a total of 15, because we have no way of distinguishing padding preambles from starting spaces within the message body.) It will copy this character into memory location[0], and successive non-zero characters into memory [1, ...]. At the end of the message, it shall pad the remaining memory address values up to [63] with ASCII spaces."

@@ -1,0 +1,39 @@
+
+
+
+
+
+
+
+
+n = data_mem[61]
+
+taps = data_mem[62]
+
+
+LFSR = data_mem[63]
+
+i = 0
+
+A:
+temp = 0x20
+
+goto C
+B:
+i -= N
+temp =  data_mem[i]
+i += N
+C:
+temp ^= LFSR++
+if (^temp == 1) goto D
+
+temp ^= 128
+
+D:
+i += 64
+data_mem[i] = temp
+i -= 64
+i++
+if (i < N) goto A
+
+if (i < 64) goto B

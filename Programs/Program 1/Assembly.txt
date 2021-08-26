@@ -1,0 +1,42 @@
+// constant stack: 32
+start
+con r0 // r0 is 61
+not r0
+inc r0
+inc r0
+lsl r0
+not r0
+ldr r0 r1 // r1 is N
+inc r0
+ldr r0 r2 // set taps
+tap r2
+inc r0
+ldr r0 r2 // set initial state
+slf r2
+xor r2 r2 // r2 is 0 and loop variable
+inc r0 // r0 is 64, r1 is N, r2 is i, r3 is scratch
+//A:
+mov r0 r3 // making r3 = 0x20 = 64/2
+lsr r3
+bal 0001 // goto C
+//B:
+sub r1 r2
+ldr r2 r3
+add r1 r2
+//C:
+xlf r3
+bnx 0001 // goto D
+lsl r0
+xor r0 r3
+lsr r0
+//D:
+add r0 r2
+str r2 r3
+sub r0 r2
+inc r2
+cmp r1 r2
+blt 1100 // goto A
+nop
+cmp r0 r2
+blt 1100 // goto B
+end

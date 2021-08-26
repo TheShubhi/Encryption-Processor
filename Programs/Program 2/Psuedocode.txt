@@ -1,0 +1,53 @@
+
+
+i = 0
+Q:
+
+
+taps = i
+i++
+j = 64
+
+temp = data_mem[j]
+k = 0x20
+k ^= temp
+LFSR = k
+P:
+
+k = 0x20
+temp = data_mem[j]
+temp ^= LFSR++
+j++
+if (k != temp) goto Q
+
+if (j < 74) goto P
+
+
+
+
+
+
+
+
+
+i = 0
+j = 64
+
+temp = data_mem[j]
+k = 0x20
+k ^= temp
+LFSR = k
+k = 127
+
+
+A:
+i += j
+temp =  data_mem[i]
+i -= j
+temp ^= LFSR++
+temp &= k
+data_mem[i] = temp
+i++
+if (i < j) goto A
+
+end

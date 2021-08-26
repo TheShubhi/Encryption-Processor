@@ -1,0 +1,107 @@
+
+
+i = 0
+Q:
+
+
+taps = i
+i++
+j = 64
+
+temp = data_mem[j]
+k = 0x20
+k ^= temp
+LFSR = k
+P:
+
+k = 0x20
+k ^= LFSR++
+temp = data_mem[j]
+j++
+if (k != temp) goto Q
+
+if (j < 74) goto P
+
+
+
+
+
+
+
+
+// LFSR set, j = 74, k = 74 already
+k = 79
+
+
+
+
+Lp1:
+temp = data_mem[j]
+j++
+i = 0x20
+i ^= LFSR++
+if (i != temp) goto Fix
+
+
+if (j < k) goto Lp1
+
+i = 0
+
+
+goto Lp2
+Fix:
+if (!^temp) goto ElseFix
+
+temp = 0x80
+
+
+
+goto ContFix
+
+
+ElseFix:
+k = 0x20
+k ^= i (k = prev LFSR)
+temp ^= k
+temp *= 2
+temp /= 2
+ContFix:
+i = 0
+data_mem[i] = temp
+i++
+Lp2:
+
+
+temp = data_mem[j]
+j++
+if (!^temp) goto Else2
+
+temp ^= LFSR++
+temp = 0x80
+
+
+
+
+goto Cont2
+Else2:
+temp ^= LFSR++
+temp *= 2
+temp /= 2
+Cont2:
+data_mem[i] = temp
+i++
+if (j < 0) goto Cont3
+
+goto Lp2
+
+
+Cont3:
+k = 64
+
+Lp3:
+j = 0x20
+data_mem[i] = j
+i++
+if (i < k) goto Lp3
+
+end

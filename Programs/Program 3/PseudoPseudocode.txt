@@ -1,0 +1,14 @@
+i = 0 // LFSR set, j = 74, k = 74, temp = 128 // already
+while (j < 79)
+  temp = data_mem[j++] ^ LFSR++
+  if (temp != 0x20)
+    break  
+    
+while (j < 128) // j > 0
+  data_mem[i++] = (^temp) ? 0x80:temp
+  break condition here
+  temp = data_mem[j++] ^ LFSR++
+
+  
+while (i < 64)
+  data_mem[i++] = 0x20
