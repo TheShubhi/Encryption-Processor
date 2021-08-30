@@ -4,7 +4,7 @@ All three programs should be working as expected. Any differences in Program 3 b
 Link for files not included
 
 Zoom Video:
-https://ucsd.zoom.us/rec/share/ZuzBWBf-YeZN-ZBVUGe11eOVQm9NyHoRrd9U2vvsxKNs8TIrBQI0tvN9k1FKzyqa.MFrOuFQEq7yHCtQp?startTime=1630361749000
+https://ucsd.zoom.us/rec/share/i2yUJ4lEsbjhaExVcjp9gHekvuaLwvJC1gJCbSIYhLZ_VayuBqALVjP7P8R634RJ.okm4C92bWnUEIWol Passcode: 6v?L@@dA
 
 Link to EDAPlayground project:
 https://www.edaplayground.com/x/LCPC
